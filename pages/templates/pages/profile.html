@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Add your CSS styles here to customize the page's appearance */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .profile-picture {
+            max-width: 200px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .user-info {
+            text-align: center;
+        }
+
+        .user-info p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <img class="profile-picture" src="{% static 'images/zoro.jpg' %}">
+        <div class="user-info">
+            <p><strong>Name:</strong> Zorojuro</p>
+            <p><strong>Email:</strong> Zoro@example.com</p>
+            <p><strong>Location:</strong>Wano</p>
+        </div>
+    </div>
+</body>
+</html>

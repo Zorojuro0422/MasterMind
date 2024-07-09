@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="icon" href="images/MasterMindLogo.png" type="image/png">
+  <link rel="stylesheet" href="{% static 'displaynote.css' %}">
+  <title>Display Journal</title>
+
+  <style>
+    .icon-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 5em;
+      height: 3.5em;
+      border: 1px solid black;
+      transition: transform 0.2s;
+    }
+  
+    .icon-button:hover {
+      transform: scale(1.1);
+    }
+
+    #buttoncontainer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-3">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        
+    <a class="navbar-brand h1 mt-2 fs-4" href="#" ><span style="color: #F89134;">Master</span>Mind</a>
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" speechify-initial-font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" speechify-initial-font-size="16px" style="font-family: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;">
+      <li ><a href="{% url 'main' %}" class="nav-link px-3 link-body-emphasis lh-sm " >Home</a></li>
+      <li ><a href="{% url 'note' %}" class="nav-link px-1 link-body-emphasis lh-sm" >Your Library</a></li>
+      <li ><a href="{% url 'flashcard' %}" class="nav-link px-3 link-body-emphasis lh-sm" >Create Flash Card</a></li>
+    </ul>
+
+    <form class="col-6 col-lg-md mb-3 mb-lg-0 me-lg-3 " role="search" >
+        <input type="search" class="form-control" placeholder="Study sets, textbook, questions" aria-label="Search" >
+      </form>
+   
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell mx-2" viewBox="0 0 16 16" >
+        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+    </svg>
+
+    
+    <div class="dropdown text-end">
+      <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+      </a>
+      <ul class="dropdown-menu text-small">
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="#">New project</a></li>
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="#">Settings</a></li>
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="{% url 'login' %}">Sign out</a></li>
+      </ul>
+    </div>
+
+    </div>
+  </div>
+    
+    <div id="maincontainer">
+      <form method="post" id="inputcontainer">
+        {% csrf_token %}
+        <textarea name="title" id="term" cols="30" rows="10">{{ notes.title }}</textarea>
+        <textarea name="content" id="definition" cols="30" rows="10">{{ notes.content }}</textarea>
+        
+        <div id="buttoncontainer">
+          <a href="{% url 'editnote' title=notes.title %}"><button type="button" id="editbtn" class="icon-button">EDIT</button></a>
+          <input type="submit" value="DELETE" id="savebtn" class="icon-button">
+          <a href="{% url 'note' %}"><button type="button" id="savebtn" class="icon-button">BACK</button></a>
+        </div>
+      </form>
+    </div>
+
+</body>
+</html>

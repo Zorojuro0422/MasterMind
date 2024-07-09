@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MasterMind - Share Note</title>
+  <link rel="icon" href="{% static 'images/MasterMindLogo.png' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'sharenote.css' %}"> <!-- Add your custom CSS if needed -->
+</head>
+<body>
+  <div class="container mt-2">
+    <!-- Your header content here -->
+
+    <div id="mynotes" style="min-height: 90%;">
+      <h2 style="text-align: center;">Note List</h2>
+      <form method="post" action="{% url 'sharenote' group_id %}">
+        {% csrf_token %}
+        <ul style="list-style-type: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: auto; width: 90em; height: 15em;">
+          {% block content %}
+            {% for note in notes %}
+              <li class="card" style="font-weight: bold; font-size: x-large; border: 1px solid black; border-radius: 5px; margin: 10px; transition: transform 0.2s; background-color: white; position: relative;">
+                <div class="title" style="position: absolute; top: 0; left: 0; right: 0; background-color: #F08080; color: white; padding: 5px; text-align: center; backdrop-filter: blur(5px); font-size: 20px;">
+                  {{ note.title }}
+                </div>
+                <div class="content" style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center; padding: 5px; background-color: white;">
+                  {{ note.content }}
+                </div>
+                <div class="checkbox" style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center; padding: 5px; background-color: white;">
+                  <input type="checkbox" name="note_title" value="{{ note.title }}" style="width: 30px; height: 30px;">
+                </div>
+              </li>
+            {% endfor %}
+          {% endblock %}
+        </ul>
+        <div id="submitshare" style="display: flex; justify-content: center;">
+          <input type="submit" name="share" id="share" value="Share" style="width: 100px; height: 60px; border-radius: 20px;">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

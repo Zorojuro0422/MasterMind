@@ -1,0 +1,127 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+}
+body{
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10em;
+  background-color: #FFFADA;
+}
+button{
+  cursor: pointer;
+}
+#logo {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+}
+
+.logo-container {
+  position: relative;
+}
+
+.loginlogo {
+  height: 100%;
+  width: 100%;
+}
+
+.blob2 {
+  position: absolute;
+  bottom: 0; 
+  left: -15em;
+  max-width: none;
+  width: auto;
+  height: 165%;
+  z-index: -1;
+}
+#loginandsignupcontainer{
+  height: 100%;
+  width: 50%;
+}
+#buttoncontainer{
+  position: relative;
+  margin-bottom: 1em;
+}
+#buttoncontainer button{
+  background-color: transparent;
+  height: 2em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.signup{
+  cursor: pointer;
+  border: 0;
+}
+.login{
+  border: 0;
+  margin-left: 2em;
+  cursor: pointer;
+}
+.active {
+  border-bottom: 2px solid violet;
+}
+#signupcontainer{
+  height: 100%;
+  width: 80%;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, .3);
+}
+#signupcontainer form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+#signupcontainer input[type="text"],#signupcontainer input[type="password"]{
+  height: 3.5em;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: transparent;
+}
+#signupcontainer button{
+  height: 3.5em;
+  border-radius: 5px;
+  background-color: cyan;
+}
+#logincontainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  width: 80%;
+  border: 2px solid cyan;
+  border-radius: 15px;
+  padding: 40px 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, .3);
+}
+#logincontainer input[type="text"],#logincontainer input[type="password"]{
+  height: 3em;
+  border: 0;
+  border-bottom: 2px solid #000;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 1em;
+}
+#logincontainer button{
+  height: 4em;
+  border-radius: 10px;
+  background-color: cyan;
+}
+#displaylogin{
+  display: none;
+  height: 85%;
+}
+#displaysignup{
+  display: block;
+  height: 85%;
+}

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MasterMind</title>
+  <link rel="stylesheet" href="{% static 'loginstyle.css' %}">
+  <link rel="stylesheet" href="{% static 'landingpage.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <div id="logo">
+    <div class="logo-container">
+      <img src="{% static 'images/MasterMindLogo.png' %}" alt="MasterMindLogo" class="loginlogo">
+        <svg class="blob2" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="b" r="100%" cx="75%" cy="70%"><stop offset="0%" stop-color="#FAD961"/><stop offset="100%" stop-color="#F76B1C"/></radialGradient><clipPath id="a"><path fill="currentColor" d="M820.5 627.5Q851 755 752.5 865t-222 15.5Q407 786 274.5 773T158 630q16-130 21-245t121-128.5q116-13.5 229.5-105t177.5 30q64 121.5 73.5 220t40 226Z"/></clipPath></defs><g clip-path="url(#a)"><path fill="url(#b)" d="M820.5 627.5Q851 755 752.5 865t-222 15.5Q407 786 274.5 773T158 630q16-130 21-245t121-128.5q116-13.5 229.5-105t177.5 30q64 121.5 73.5 220t40 226Z"/></g>
+        </svg>
+      </div>
+    </div>
+  <div id="loginandsignupcontainer">
+    <div id="buttoncontainer">
+    <a href="signup" class="login" style="color: black; text-decoration: none; font-weight: bold;">Sign up</a>
+    </div>
+    <div id="displaysignup">
+      <div id="signupcontainer">
+        <form method="POST" action="" onsubmit="return validateForm()">
+            {% csrf_token %}
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" placeholder="user@MasterMind.com">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="MasterMind123">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="******">
+          <button type="submit">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'register.js' %}"></script>
+</body>
+</html>

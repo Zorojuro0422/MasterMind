@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  width: 100%;
+  height: 100vh;
+  background-color: #FFFADA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+#container{
+  width: 80%;
+  height: 80%; 
+  display: grid;
+  place-items: center;
+}
+#container form{
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

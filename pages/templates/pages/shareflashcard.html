@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterMind</title>
+    <link rel="icon" href="{% static 'images/MasterMindLogo.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'shareflashcard.css' %}">
+
+</head>
+<body>
+  <div class="container mt-2" >
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        
+    <a class="navbar-brand h1 mt-2 fs-4" href="#" ><span style="color: #F89134;">Master</span>Mind</a>
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" speechify-initial-font-family="system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;" speechify-initial-font-size="16px" style="font-family: system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, &quot;Noto Sans&quot;, &quot;Liberation Sans&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px;">
+      <li ><a href="{% url 'main' %}" class="nav-link px-3 link-body-emphasis lh-sm " >Home</a></li>
+      <li ><a href="{% url 'flashcard' %}" class="nav-link px-1 link-body-emphasis lh-sm" >Your Library</a></li>
+      <li ><a href="{% url 'flashcard' %}" class="nav-link px-3 link-body-emphasis lh-sm" >Create Flash Card</a></li>
+    </ul>
+
+    <form class="col-6 col-lg-md mb-3 mb-lg-0 me-lg-3 " role="search" >
+        <input type="search" class="form-control" placeholder="Study sets, textbook, questions" aria-label="Search" >
+      </form>
+   
+      <div class="dropdown mx-3">
+        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+          </svg>
+        </a>
+     
+        <ul class="dropdown-menu text-center"  style="height: 230px; width: 240px;">
+          <h6 class="drowdown-header">Your Groups</h6>
+          <div class="dropdown-divider"></div>
+
+          <div class="dropdown-scroll"style="max-height: 100px; overflow-y: auto;">
+            <a class="dropdown-item" href="#">group A</a>
+            <a class="dropdown-item" href="#">group B</a>
+            <a class="dropdown-item" href="#">group C</a>
+            <a class="dropdown-item" href="#">group D</a>
+            <a class="dropdown-item" href="#">group E</a>
+            <a class="dropdown-item" href="#">group F</a>
+          </div>
+
+
+          <div class="dropdown-divider"></div>
+          <a href="#" class="btn btn-warning mt-2">Create group</a>
+        </ul>
+      </div>
+
+    
+    <div class="dropdown text-end">
+      <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle mb-1" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+      </a>
+      <ul class="dropdown-menu text-small">
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="#">New project</a></li>
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="#">Settings</a></li>
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+        <li  speechify-initial-font-size="13.6px" ><a class="dropdown-item" href="{% url 'login' %}">Sign out</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div id="myflashcard" style="min-height: 90%;">
+  <h2 style="text-align: center;">Flashcard List</h2>
+  <form method="post" action="{% url 'shareflashcard' group_id %}">
+    {% csrf_token %}
+    <ul style="list-style-type: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: auto; width: 90em; height: 15em;">
+      {% block content %}
+      {% for flashcard in flashcards %}
+      <li class="card" style="font-weight: bold; font-size: x-large; border: 1px solid black; border-radius: 5px; margin: 10px; transition: transform 0.2s; background-color: white; position: relative;">
+        <div class="bg-image" style=" width: 100%; height: 100%; position: absolute; top: 0x; left: 0; bottom: 10px; background-size: cover;"><img src="{% static 'images/MasterMindLogo.png' %}" alt="MasterMindLogo" id="mastermindlogo" style="width: 100%; height: 100%;"></div>
+
+        <div class="title" style="position: absolute; top: 0; left: 0; right: 0; background-color: #0DCAF0; color: white; padding: 5px; text-align: center; backdrop-filter: blur(5px); font-size: 20px;">
+          {{ flashcard.title }}
+        </div>
+
+        <div class="checkbox" style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center; padding: 5px; background-color: white;">
+          <input type="checkbox" name="flashcard_title" value="{{ flashcard.title }}" style="width: 30px; height: 30px;">
+        </div>
+      </li>
+      {% endfor %}
+      {% endblock %}
+    </ul>
+
+    <div id="submitshare" style="display: flex; justify-content: center;">
+      <input type="submit" name="share" id="share" value="Share" style="width: 100px; height: 60px; border-radius: 20px;">
+    </div>
+  </form>
+  
+</div>
+</body>
+</html>

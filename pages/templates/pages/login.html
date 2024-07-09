@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MasterMind</title>
+  <link rel="stylesheet" href="{% static 'loginstyle.css' %}">
+  <link rel="stylesheet" href="{% static 'landingpage.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <div id="logo">
+    <div class="logo-container">
+      <img src="{% static 'images/MasterMindLogo.png' %}" alt="MasterMindLogo" class="loginlogo">
+        <svg class="blob2" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="b" r="100%" cx="75%" cy="70%"><stop offset="0%" stop-color="#FAD961"/><stop offset="100%" stop-color="#F76B1C"/></radialGradient><clipPath id="a"><path fill="currentColor" d="M820.5 627.5Q851 755 752.5 865t-222 15.5Q407 786 274.5 773T158 630q16-130 21-245t121-128.5q116-13.5 229.5-105t177.5 30q64 121.5 73.5 220t40 226Z"/></clipPath></defs><g clip-path="url(#a)"><path fill="url(#b)" d="M820.5 627.5Q851 755 752.5 865t-222 15.5Q407 786 274.5 773T158 630q16-130 21-245t121-128.5q116-13.5 229.5-105t177.5 30q64 121.5 73.5 220t40 226Z"/></g>
+        </svg>
+      </div>
+    </div>
+	<div id="loginandsignupcontainer">
+    <div id="bigtext">
+      <h1 style="font-size: 36px;">Sign in</h1>
+  </div>
+    <div id="displaysignup">
+      <div id="logincontainer">
+        <form method="POST" onsubmit='novalidate'>
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="Type your email address or username"><br>
+        <label for="username">EMAIL:</label><br>
+        <input type="password" name="password" placeholder="Type your password"><br>
+        <label for="password">PASSWORD:</label><br>
+        <button type="submit"  style="width: 20%" >Login</button>
+        <a href="{% url 'home' %}">Create an account</a>
+        </form>
+      </div>
+      {% if login_failed %}
+      <script>
+          alert("Incorrect email or password. Please try again.");
+      </script>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>

@@ -1,0 +1,42 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #FFFADA;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2em;
+}
+#maincontainer{
+  width: 80%;
+  height: 70%;
+}
+#inputcontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+#definition{
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  height: 20em; 
+}
+#term{
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%;
+  height: 5em;
+}
+#savebtn{
+  border-radius: 5px;
+  width: 5em;
+  height: 3em;
+}
